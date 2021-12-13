@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %} Detail {% endblock %}
+
+{% block body %}
+
+{% if message %}
+	<div class="alert alert-danger container" role="alert">
+	  {{ message }}
+	</div>
+{% endif %}
+
+<div class="container" style="text-align: center;">
+	<h4 style="font-size: 40px; color: #696969; text-align: center; margin-top: 10px; margin-bottom: 10px;"> --- {{ book.title }} --- </h4>
+	<table>
+		<tr class="book_detail_header">
+			<td class="book_detail_header">isbn number</td>
+			<td class="book_detail_header">author</td>
+			<td class="book_detail_header">publication date</td>
+		</tr>
+		<tr class="book_detail">
+			<td class="book_detail">{{ book.isbn }}</td>
+			<td class="book_detail">{{ book.author }}</td>
+			<td class="book_detail">{{ book.year }}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="container" style="text-align: center;">
+	<h4 class="goodread_info">Average rating for this book in Goodread: {{ rating }}</h4>
+	<h4 class="goodread_info">Number of rating for this book in Goodread: {{ number_of_rating }}</h4>
+</div>
+
+<div class="container">
+	<form action="{{ url_for('review') }}" method="post">
+		<div class="form-group">
+	    	<h3>Please rate this book</h3>
+			<input type="radio" name="score" value="1" /> 1
+			<input type="radio" name="score" value="2" /> 2
+			<input type="radio" name="score" value="3" /> 3
+			<input type="radio" name="score" value="4" /> 4
+			<input type="radio" name="score" value="5" /> 5
+		</div>
+		{% if new_review %}
+			<h6>Average score: {{ n_a_s }}</h6>
+		{% else %}
+			<h6>Average score: {{ book.average_score }}</h6>
+		{% endif %}
+
+		<p>Write a review for this book!</p>
+		<textarea name="new_review" id="new_review" cols="100" rows="10" placeholder="Write a review!"></textarea>
+		<button type="submit" action="{{ url_for('review') }}" method="post" class="btn btn-secondary">Submit</button>
+	</form>
+</div>
+
+<div class="container">
+	<h3>Reviews for this book:</h3>
+
+	{% if new_review %}
+		<div class="container">
+			<p style="font-size: 20px; color: #696969">Your new review: {{ new_review }}</p> 
+		</div>
+	{% endif %}
+</div>
+
+{% if users %}
+	<div class="container" style="margin-bottom: 70px">
+		<table style="width: 1000px" >
+			<tr>
+				<td class="review_detail" style="width: 200px">username</td>
+				<td class="review_detail" style="width: 700px">review content</td>
+				<td class="review_detail" style="width: 100px">score</td>
+			</tr>
+		</table>
+		{% for user in users %}
+			<table style="width: 1000px">
+				<tr>
+					<td class="review_detail" style="width: 200px">{{ user.username }}</td>
+					<td class="review_detail" style="width: 700px">{{ user.review_content }}</td>
+					<td class="review_detail" style="width: 100px">{{ user.score }}</td>
+				</tr>
+			</table>
+		{% endfor %}
+	</div>
+{% endif %}
+
+{% if message1 %}
+	<div class="alert alert-danger container" role="alert">
+	  {{ message1 }}
+	</div>
+{% endif %}
+
+
+
+{% endblock %}
+

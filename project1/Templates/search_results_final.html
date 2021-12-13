@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %} SearchResults {% endblock %}
+{% block body %}
+
+    <div class="container" style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+        <h4 style="font-size: 40px; color: #696969;">Search results</h4>
+        <table style="width: 1000px">
+            <tr>
+                <td class="book_result_heading">Isbn</td>
+                <td class="book_result_heading">Title</td>
+                <td class="book_result_heading">Author</td>
+                <td class="book_result_heading">Year</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container">
+        {% for book in book1 %}
+            <form action="{{ url_for('detail') }}" method="post">
+                <table style="width: 1250px">
+                    <tr>
+                        <input type="hidden" name="book_id" value="{{ book.id }}" />
+                        <td class="book_result">{{ book.isbn }}</td>
+                        <td class="book_result">{{ book.title }}</td>
+                        <td class="book_result">{{ book.author }}</td>
+                        <td class="book_result">{{ book.year }}</td>
+                        <td style="width: 250px; height: 50px; align-items: center;"><button action="{{ url_for('detail') }}" class="btn btn-secondary"> Detail </button></td>
+                    </tr>
+                </table>
+            </form>
+        {% endfor %}
+        {% for book in book2 %}
+            <form action="{{ url_for('detail') }}" method="post">
+                <table style="width: 1250px">
+                    <tr>
+                        <input type="hidden" name="book_id" value="{{ book.id }}" />
+                        <td class="book_result">{{ book.isbn }}</td>
+                        <td class="book_result">{{ book.title }}</td>
+                        <td class="book_result">{{ book.author }}</td>
+                        <td class="book_result">{{ book.year }}</td>
+                        <td style="width: 250px; height: 50px; align-items: center;"><button action="{{ url_for('detail') }}" class="btn btn-secondary"> Detail </button></td>
+                    </tr>
+                </table>
+            </form>
+        {% endfor %}
+        {% for book in book3 %}
+            <form action="{{ url_for('detail') }}" method="post">
+                <table style="width: 1250px">
+                    <tr>
+                        <input type="hidden" name="book_id" value="{{ book.id }}" />
+                        <td class="book_result">{{ book.isbn }}</td>
+                        <td class="book_result">{{ book.title }}</td>
+                        <td class="book_result">{{ book.author }}</td>
+                        <td class="book_result">{{ book.year }}</td>
+                        <td style="width: 250px; height: 50px; align-items: center;"><button action="{{ url_for('detail') }}" class="btn btn-secondary"> Detail </button></td>
+                    </tr>
+                </table>
+            </form>
+        {% endfor %}
+        {% for book in book4 %}
+            <form action="{{ url_for('detail') }}" method="post">
+                <table style="width: 1250px">
+                    <tr>
+                        <input type="hidden" name="book_id" value="{{ book.id }}" />
+                        <td class="book_result">{{ book.isbn }}</td>
+                        <td class="book_result">{{ book.title }}</td>
+                        <td class="book_result">{{ book.author }}</td>
+                        <td class="book_result">{{ book.year }}</td>
+                        <td style="width: 250px; height: 50px; align-items: center;"><button action="{{ url_for('detail') }}" class="btn btn-secondary"> Detail </button></td>
+                    </tr>
+                </table>
+            </form>
+        {% endfor %}
+    </div>
+
+{% endblock %}

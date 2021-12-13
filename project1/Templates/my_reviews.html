@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %} My reviews {% endblock %}
+
+{% block body %}
+
+{% if books %}
+	<div class="container" style="margin-bottom: 70px; margin-top: 30px; text-align: center;">
+		<h4 style="font-size: 40px; color: #696969;"> Your reviews </h4>
+		<table style="width: 1100px" >
+			<tr>
+				<td class="review_myreview" style="border-right: 1px solid #ffffff; width: 300px">title</td>
+				<td class="review_myreview" style="border-right: 1px solid #ffffff; width: 700px">review content</td>
+				<td class="review_myreview" style="width: 100px">score</td>
+			</tr>
+		</table>
+		{% for book in books %}
+			<table style="width: 1100px;">
+				<tr>
+					<td class="review_myreview_1" style="width: 300px">{{ book.title }}</td>
+					<td class="review_myreview_1" style="width: 700px">{{ book.review_content }}</td>
+					<td class="review_myreview_1" style="width: 100px">{{ book.score }}</td>
+				</tr>
+			</table>
+		{% endfor %}
+	</div>
+{% endif %}
+{% endblock %}
